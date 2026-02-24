@@ -1,0 +1,42 @@
+[project]
+name = "myteacher-ai"
+version = "0.1.0"
+description = "Agentic AI tutoring backend using Django, LangChain, and LangGraph"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "django>=5.1,<6.0",
+  "djangorestframework>=3.15.2",
+  "drf-spectacular>=0.27.2",
+  "langchain>=0.3.0",
+  "langgraph>=0.2.0",
+  "langchain-openai>=0.2.0",
+  "redis>=5.2.0",
+  "python-dotenv>=1.0.1",
+  "pydantic>=2.9.0",
+  "structlog>=24.4.0",
+  "azure-ai-formrecognizer>=3.3.3",
+  "azure-cognitiveservices-speech>=1.42.0",
+  "azure-ai-vision-imageanalysis>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3",
+  "pytest-django>=4.9.0",
+  "ruff>=0.6.9",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py", "*_tests.py"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
