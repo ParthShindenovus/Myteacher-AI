@@ -1,0 +1,9 @@
+from django.urls import path
+
+from ai_tutor.views import DecomposeQuestionAPIView, NormalizeInputAPIView, TutoringWorkflowAPIView
+
+urlpatterns = [
+    path("normalize/", NormalizeInputAPIView.as_view(), name="normalize-input"),
+    path("decompose/", DecomposeQuestionAPIView.as_view(), name="decompose-question"),
+    path("workflow/", TutoringWorkflowAPIView.as_view(), name="tutoring-workflow"),
+]
