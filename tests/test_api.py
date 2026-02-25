@@ -37,3 +37,24 @@ def test_decompose_endpoint_without_azure_credentials():
     assert response.status_code == 200
     assert response.data["subgoals"] == ["find velocity"]
     assert response.data["currentIndex"] == 0
+
+
+@pytest.mark.django_db
+def test_connected_workflow_endpoint_returns_structured_statuses():
+    client = APIClient()
+    response = client.post(
+        reverse("tutoring-workflow"),
+        {
+            "sessionId": "student-101",
+            "inputType": "text",
+            "text": "a) find velocity b) find acceleration",
+        },
+        format="json",
+    )
+
+    assert response.status_code == 200
+    assert "normalizedQuery" in response.data
+    assert "decomposed" in response.data
+    assert isinstance(response.data["statusTrail"], list)
+    assert any(item["keyword"] == "thinking" for item in response.data["statusTrail"])
+    assert any(item["keyword"] == "creating subgoals" for item in response.data["statusTrail"])

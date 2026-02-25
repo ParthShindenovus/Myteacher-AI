@@ -18,6 +18,8 @@ dependencies = [
   "azure-ai-formrecognizer>=3.3.3",
   "azure-cognitiveservices-speech>=1.42.0",
   "azure-ai-vision-imageanalysis>=1.0.0",
+  "streamlit>=1.39.0",
+  "requests>=2.32.3",
 ]
 
 [project.optional-dependencies]
